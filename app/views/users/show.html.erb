@@ -2,12 +2,56 @@
      <div class="row">
        <div class="col-xs-3">
          <%= image_tag current_user.image_url, class: "img-circle img-thumbnail", id: "img-custom" %>
-         <h6 class="sidebar"> <%= current_user.nickname %> </h6>
+         <h4 class="sidebar"> <%= current_user.nickname %> </h4>
          <h6 class="sidebar"> <%= current_user.email %> </h6>
+         <h6 class="sidebar">Starred Repos:  </h6>
+         <h6 class="sidebar">Followers:  </h6>
+         <h6 class="sidebar">Following:  </h6>
+         <h6 class="sidebar">Organizations:  </h6>
        </div>
        <div class="col-xs-9">
-         <h2>Repositories</h2>
-         <h2>Recent Activity</h2>
+         <table class="table table-hover" id="table-repo">
+         <thead>
+           <tr>
+             <th>Repository</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td>Repo Name</td>
+           </tr>
+         </tbody>
+         </table>
+
+         <table class="table table-hover table-cont">
+         <thead>
+           <tr>
+             <th>Contributions in Past Year</th>
+             <th>Current Streak</th>
+             <th>Longest Streak</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td>999</td>
+             <td>400</td>
+             <td>400</td>
+           </tr>
+         </tbody>
+         </table>
+
+         <table class="table table-hover table-activity">
+         <thead>
+           <tr>
+             <th>Recent Activity</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td>Commit Name</td>
+           </tr>
+         </tbody>
+         </table>
        </div>
      </div>
 

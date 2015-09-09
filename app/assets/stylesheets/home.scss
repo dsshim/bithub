@@ -21,11 +21,18 @@ body {
   margin-top: 20%;
   text-align: center;
   text-shadow: 4px 4px 4px black;
+  font-family: "Aldrich", sans-serif;
+  font-size: 6em;
 
 }
 
 #navbar-custom {
   background-color: #032B57;
+  // font-family: "Aldrich", sans-serif;
+}
+
+.navbar-brand{
+  font-family: "Aldrich", sans-serif;
 }
 
 .navbar a{
@@ -53,4 +60,5 @@ body {
 .btn-home {
   margin-left: 40%;
   margin-top: 30%;
+  font-family: "Aldrich", sans-serif;
 }
