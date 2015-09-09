@@ -1,0 +1,56 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+html,
+body {
+  height: 100%;
+  max-width: 100%;
+}
+
+a {
+  color: whitesmoke;
+}
+
+body {
+  padding-top: 42px;
+}
+
+
+#page-header {
+  color: whitesmoke;
+  margin-top: 20%;
+  text-align: center;
+  text-shadow: 4px 4px 4px black;
+
+}
+
+#navbar-custom {
+  background-color: #032B57;
+}
+
+.navbar a{
+  color: whitesmoke;
+}
+
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+}
+
+.fullscreen-bg__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.btn-home {
+  margin-left: 40%;
+  margin-top: 30%;
+}

@@ -1,0 +1,14 @@
+<div id="main-container" class="container">
+     <div class="row">
+       <div class="col-xs-3">
+         <%= image_tag current_user.image_url, class: "img-circle img-thumbnail", id: "img-custom" %>
+         <h6 class="sidebar"> <%= current_user.nickname %> </h6>
+         <h6 class="sidebar"> <%= current_user.email %> </h6>
+       </div>
+       <div class="col-xs-9">
+         <h2>Repositories</h2>
+         <h2>Recent Activity</h2>
+       </div>
+     </div>
+
+</div>
