@@ -57,26 +57,21 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-  # def user
-  #   @user ||= User.create(provider: 'github',
-  #                         uid: '12345',
-  #                         email: 'user@email.com',
-  #                         nickname: 'user',
-  #                         image_url: 'www.fakeaddress.com',
-  #                         token: 'abcdef')
-  # end
-
 
 def login
   OmniAuth.config.test_mode = true
 
   OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
     :provider => 'github',
-    :nickname => 'nickname',
-    :email => 'dave@dave.com',
+      info:{
+        :nickname => 'nickname',
+        :email => 'dave@dave.com',
+        :image_url => "www.fakeaddress.com",
+      },
+      credentials:{
     :token => '123490939',
     :uid => '123545',
-    :image_url => "www.fakeaddress.com",
+  },
   })
 end
 # The settings below are suggested to provide a good initial experience
