@@ -132,7 +132,7 @@
             </tbody>
           </table>
 
-          <table class="table table-hover table-activity">
+          <table class="table table-hover table-activity table-curved">
             <thead>
               <tr>
                 <th>Latest Pull Requests</th>
@@ -149,7 +149,7 @@
             </tbody>
           </table>
 
-          <table class="table table-hover table-activity">
+          <table class="table table-hover table-activity table-curved">
             <thead>
               <tr>
                 <th>Latest Issues</th>
@@ -166,7 +166,7 @@
             </tbody>
           </table>
 
-          <table class="table table-hover table-activity">
+          <table class="table table-hover table-activity table-curved">
             <thead>
               <tr>
                 <th>Latest Commits</th>
@@ -190,20 +190,3 @@
       </div>
 
     </div>
-
-    <script>
-    // client side
-    function responseHandler(res) {
-      return res.repos;
-    }
-
-    // server side
-    /*
-    function responseHandler(res) {
-    return {
-    rows: res.repos;
-    total: res.repos.length
-  }
-}
-*/
-</script>
