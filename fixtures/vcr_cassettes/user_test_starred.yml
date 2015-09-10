@@ -1,0 +1,83 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/user/starred?access_token=c0ea48badc5e558883dcbfb788b92417d4f8170c
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json,application/vnd.github.beta+json;q=0.5,application/json;q=0.1
+      Accept-Charset:
+      - utf-8
+      User-Agent:
+      - Github API Ruby Gem 0.12.4
+      Authorization:
+      - token c0ea48badc5e558883dcbfb788b92417d4f8170c
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 10 Sep 2015 20:47:42 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4997'
+      X-Ratelimit-Reset:
+      - '1441921118'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Etag:
+      - W/"3e40321472d07a194a3a087f098b9377"
+      X-Oauth-Scopes:
+      - ''
+      X-Accepted-Oauth-Scopes:
+      - ''
+      X-Oauth-Client-Id:
+      - 12566c1251cad1db89b5
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 4999852B:1647:9A51FEA:55F1EC6E
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - c6c65e5196703428e7641f7d1e9bc353
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"id":41322219,"name":"the_pivot","full_name":"imwithsam/the_pivot","owner":{"login":"imwithsam","id":1934074,"avatar_url":"https://avatars.githubusercontent.com/u/1934074?v=3","gravatar_id":"","url":"https://api.github.com/users/imwithsam","html_url":"https://github.com/imwithsam","followers_url":"https://api.github.com/users/imwithsam/followers","following_url":"https://api.github.com/users/imwithsam/following{/other_user}","gists_url":"https://api.github.com/users/imwithsam/gists{/gist_id}","starred_url":"https://api.github.com/users/imwithsam/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/imwithsam/subscriptions","organizations_url":"https://api.github.com/users/imwithsam/orgs","repos_url":"https://api.github.com/users/imwithsam/repos","events_url":"https://api.github.com/users/imwithsam/events{/privacy}","received_events_url":"https://api.github.com/users/imwithsam/received_events","type":"User","site_admin":false},"private":false,"html_url":"https://github.com/imwithsam/the_pivot","description":"Pivoting
+        a brownfield project with Ruby on Rails and JavaScript","fork":false,"url":"https://api.github.com/repos/imwithsam/the_pivot","forks_url":"https://api.github.com/repos/imwithsam/the_pivot/forks","keys_url":"https://api.github.com/repos/imwithsam/the_pivot/keys{/key_id}","collaborators_url":"https://api.github.com/repos/imwithsam/the_pivot/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/imwithsam/the_pivot/teams","hooks_url":"https://api.github.com/repos/imwithsam/the_pivot/hooks","issue_events_url":"https://api.github.com/repos/imwithsam/the_pivot/issues/events{/number}","events_url":"https://api.github.com/repos/imwithsam/the_pivot/events","assignees_url":"https://api.github.com/repos/imwithsam/the_pivot/assignees{/user}","branches_url":"https://api.github.com/repos/imwithsam/the_pivot/branches{/branch}","tags_url":"https://api.github.com/repos/imwithsam/the_pivot/tags","blobs_url":"https://api.github.com/repos/imwithsam/the_pivot/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/imwithsam/the_pivot/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/imwithsam/the_pivot/git/refs{/sha}","trees_url":"https://api.github.com/repos/imwithsam/the_pivot/git/trees{/sha}","statuses_url":"https://api.github.com/repos/imwithsam/the_pivot/statuses/{sha}","languages_url":"https://api.github.com/repos/imwithsam/the_pivot/languages","stargazers_url":"https://api.github.com/repos/imwithsam/the_pivot/stargazers","contributors_url":"https://api.github.com/repos/imwithsam/the_pivot/contributors","subscribers_url":"https://api.github.com/repos/imwithsam/the_pivot/subscribers","subscription_url":"https://api.github.com/repos/imwithsam/the_pivot/subscription","commits_url":"https://api.github.com/repos/imwithsam/the_pivot/commits{/sha}","git_commits_url":"https://api.github.com/repos/imwithsam/the_pivot/git/commits{/sha}","comments_url":"https://api.github.com/repos/imwithsam/the_pivot/comments{/number}","issue_comment_url":"https://api.github.com/repos/imwithsam/the_pivot/issues/comments{/number}","contents_url":"https://api.github.com/repos/imwithsam/the_pivot/contents/{+path}","compare_url":"https://api.github.com/repos/imwithsam/the_pivot/compare/{base}...{head}","merges_url":"https://api.github.com/repos/imwithsam/the_pivot/merges","archive_url":"https://api.github.com/repos/imwithsam/the_pivot/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/imwithsam/the_pivot/downloads","issues_url":"https://api.github.com/repos/imwithsam/the_pivot/issues{/number}","pulls_url":"https://api.github.com/repos/imwithsam/the_pivot/pulls{/number}","milestones_url":"https://api.github.com/repos/imwithsam/the_pivot/milestones{/number}","notifications_url":"https://api.github.com/repos/imwithsam/the_pivot/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/imwithsam/the_pivot/labels{/name}","releases_url":"https://api.github.com/repos/imwithsam/the_pivot/releases{/id}","created_at":"2015-08-24T19:16:33Z","updated_at":"2015-09-09T21:39:52Z","pushed_at":"2015-09-03T20:30:09Z","git_url":"git://github.com/imwithsam/the_pivot.git","ssh_url":"git@github.com:imwithsam/the_pivot.git","clone_url":"https://github.com/imwithsam/the_pivot.git","svn_url":"https://github.com/imwithsam/the_pivot","homepage":null,"size":7931,"stargazers_count":1,"watchers_count":1,"language":"Ruby","has_issues":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"forks_count":2,"mirror_url":null,"open_issues_count":4,"forks":2,"open_issues":4,"watchers":1,"default_branch":"master","permissions":{"admin":false,"push":true,"pull":true}}]'
+    http_version: 
+  recorded_at: Thu, 10 Sep 2015 20:47:43 GMT
+recorded_with: VCR 2.9.3

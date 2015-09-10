@@ -16,17 +16,21 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require 'webmock'
+require 'vcr'
+
+VCR.configure do |config|
+  config.cassette_library_dir = "fixtures/vcr_cassettes"
+  config.hook_into :webmock # or :fakeweb
+end
+
+
 RSpec.configure do |config|
   require 'capybara/rspec'
   require 'database_cleaner'
-  require 'webmock'
-  require 'vcr'
-  
-  VCR.configure do |config|
-    config.cassette_library_dir = "fixtures/vcr_cassettes"
-    config.hook_into :webmock # or :fakeweb
-  end
+  require 'simplecov'
 
+  SimpleCov.start 'rails'
 
   config.include Capybara::DSL
 
@@ -72,19 +76,19 @@ RSpec.configure do |config|
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
       :provider => 'github',
       info:{
-        :nickname => 'nickname',
-        :email => 'dave@dave.com',
+        :nickname => 'dsshim',
+        :email => 'daveshim@gmail.com',
         :image_url => "www.fakeaddress.com",
       },
       credentials:{
-        :token => '123490939',
-        :uid => '123545',
+        :token => ENV["github_oauth"],
+        :uid => '99999',
       },
       })
-    end
+  end
     # The settings below are suggested to provide a good initial experience
     # with RSpec, but feel free to customize to your heart's content.
-    =begin
+
     # These two settings work together to allow you to limit a spec run
     # to individual examples or groups you care about by tagging them with
     # `:focus` metadata. When nothing is tagged with `:focus`, all examples
@@ -130,5 +134,4 @@ RSpec.configure do |config|
     # test failures related to randomization by passing the same `--seed` value
     # as the one that triggered the failure.
     Kernel.srand config.seed
-    =end
   end

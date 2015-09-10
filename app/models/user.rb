@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
     end
     users.each do |user|
       commits << Github.activity.events.performed(user)
-        .find_all{|event| event.type == "PushEvent"}.last(1)
+      .find_all{|event| event.type == "PushEvent"}.last(1)
     end
     commits
   end
@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
     stats
     scores = []
     scores.push(@stats.data.scores.reverse[0..364]
-      .inject(:+), current_streak, longest_streak )
+    .inject(:+), current_streak, longest_streak )
     scores
   end
 
@@ -49,43 +49,50 @@ class User < ActiveRecord::Base
   end
 
   def pull_requests
-    github_auth.activity.events.performed(self.nickname)
-      .find_all{|event| event.type == "PullRequestEvent"}
+    pull_reqs = github_auth.activity.events.performed(self.nickname)
+    .find_all{|event| event.type == "PullRequestEvent"}
+    open_prs = pull_reqs.select{|pr| pr.action == "opened"}
+    opened_pull_req = []
+    open_prs.map do |pr|
+      if pr.payload.number != pull_reqs.each{|pull_req| pull_req.payload.number}
+      opened_pull_req << pr
+    end
   end
+  opened_pull_req
+end
 
-  def issues
-    github_auth.activity.events.performed(self.nickname)
-      .find_all{|event| event.type == "IssuesEvent"}
-  end
+def issues
+  github_auth.activity.events.performed(self.nickname)
+  .find_all{|event| event.type == "IssuesEvent"}
+end
 
-  def commits
-    github_auth.activity.events.performed(self.nickname)
-      .find_all{|event| event.type == "PushEvent"}
-  end
+def commits
+  github_auth.activity.events.performed(self.nickname)
+  .find_all{|event| event.type == "PushEvent"}
+end
 
-  def organizations
-    github_auth.orgs.list(user: self.nickname)
-  end
+def organizations
+  github_auth.orgs.list(user: self.nickname)
+end
 
-  private
+private
 
-  def github_auth
-    Github.new :oauth_token => self.token
-  end
+def github_auth
+  Github.new :oauth_token => self.token
+end
 
+def stats
+  @stats ||= GithubStats.new(self.nickname)
+end
 
-  def stats
-    @stats ||= GithubStats.new(self.nickname)
-  end
+def current_streak
+  days = @stats.data.streak.last.date - @stats.data.streak.first.date
+  days.numerator + days.denominator
+end
 
-  def current_streak
-    days = @stats.data.streak.last.date - @stats.data.streak.first.date
-    days.numerator + days.denominator
-  end
-
-  def longest_streak
-    days = @stats.data.longest_streak.last.date - @stats.data.longest_streak.first.date
-    days.numerator + days.denominator
-  end
+def longest_streak
+  days = @stats.data.longest_streak.last.date - @stats.data.longest_streak.first.date
+  days.numerator + days.denominator
+end
 
 end

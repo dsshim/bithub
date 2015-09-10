@@ -9,8 +9,4 @@ class ApplicationController < ActionController::Base
   def authorize!
     redirect_to root_path unless current_user
   end
-
-  def github_auth
-    @github_auth || Github.new(:oauth_token => current_user.token)
-  end
 end
