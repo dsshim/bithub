@@ -17,11 +17,6 @@ end
     click_link("Login with Github")
 
     expect(current_path).to eq(dashboard_path)
-    expect(page).to have_content("dave@dave.com")
-    expect(page).to have_content("Logged in as nickname")
-    expect(page).to have_content("Logout")
-    expect(page).to have_content("Repository")
-    expect(page).to have_content("Contributions in Past Year")
-    expect(page).to have_content("Recent Activity")
+    
   end
 end

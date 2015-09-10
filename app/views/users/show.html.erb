@@ -1,58 +1,209 @@
-<div id="main-container" class="container">
-     <div class="row">
-       <div class="col-xs-3">
-         <%= image_tag current_user.image_url, class: "img-circle img-thumbnail", id: "img-custom" %>
-         <h4 class="sidebar"> <%= current_user.nickname %> </h4>
-         <h6 class="sidebar"> <%= current_user.email %> </h6>
-         <h6 class="sidebar">Starred Repos:  </h6>
-         <h6 class="sidebar">Followers:  </h6>
-         <h6 class="sidebar">Following:  </h6>
-         <h6 class="sidebar">Organizations:  </h6>
-       </div>
-       <div class="col-xs-9">
-         <table class="table table-hover" id="table-repo">
-         <thead>
-           <tr>
-             <th>Repository</th>
-           </tr>
-         </thead>
-         <tbody>
-           <tr>
-             <td>Repo Name</td>
-           </tr>
-         </tbody>
-         </table>
 
-         <table class="table table-hover table-cont">
-         <thead>
-           <tr>
-             <th>Contributions in Past Year</th>
-             <th>Current Streak</th>
-             <th>Longest Streak</th>
-           </tr>
-         </thead>
-         <tbody>
-           <tr>
-             <td>999</td>
-             <td>400</td>
-             <td>400</td>
-           </tr>
-         </tbody>
-         </table>
 
-         <table class="table table-hover table-activity">
-         <thead>
-           <tr>
-             <th>Recent Activity</th>
-           </tr>
-         </thead>
-         <tbody>
-           <tr>
-             <td>Commit Name</td>
-           </tr>
-         </tbody>
-         </table>
-       </div>
-     </div>
+<div id="main-container" class="container-fluid">
+  <div class="row">
+    <div class="col-xs-3">
 
-</div>
+      <table class="table table-hover" id="table-repo">
+
+        <thead>
+          <tr>
+            <th>Repositories</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% current_user.repositories.each do |repo| %>
+          <tr>
+            <td> <%=link_to repo.name, repo.html_url%></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+
+    </div>
+    <div class="col-xs-9">
+
+      <%= image_tag current_user.image_url, class: "img-circle img-thumbnail img-responsive", id: "img-custom" %>
+      <h4 class="name "> <%= current_user.nickname %> </h4>
+      <h6 class="email"> <%= current_user.email %> </h6>
+      <h6 class="sidebar top"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> <a data-toggle="modal" data-target="#starred-modal">Starred Repos: <%= current_user.starred.count %> </a></h6>
+      <h6 class="sidebar"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <a data-toggle="modal" data-target="#follower-modal">Followers: <%= current_user.followers.count %></a></h6>
+        <h6 class="sidebar bottom"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><a data-toggle="modal" data-target="#following-modal"> Following: <%= current_user.following.count %> </a></h6>
+
+          <div class="modal fade" id="starred-modal" role="dialog">
+            <div class="modal-dialog modal-sm">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Starred Repos</h4>
+                </div>
+                <div class="modal-body">
+                  <% current_user.starred.each do |repo| %>
+                  <p> <%=link_to repo.full_name, repo.html_url %> </p>
+                  <% end %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="modal fade" id="follower-modal" role="dialog">
+            <div class="modal-dialog modal-sm">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Followers</h4>
+                </div>
+                <div class="modal-body">
+                  <% current_user.followers.each do |user| %>
+                  <p> <%=link_to user.login, user.html_url %> </p>
+                  <% end %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="modal fade" id="following-modal" role="dialog">
+            <div class="modal-dialog modal-sm">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Following</h4>
+                </div>
+                <div class="modal-body">
+                  <% current_user.following.each do |user| %>
+                  <p> <%=link_to user.login, user.html_url %> </p>
+                  <% end %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <% if !@org.nil? %>
+          <table class="table table-hover" id="table-repo">
+
+            <thead>
+              <tr>
+                <th>Organizations</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% current_user.organizations.each do |org| %>
+              <tr>
+                <td> <%=link_to org.login, "http://github.com/#{org.login}"%></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <% end %>
+
+          <table class="table table-hover table-cont">
+            <thead>
+              <tr>
+                <th>Contributions in Past Year</th>
+                <th>Current Streak</th>
+                <th>Longest Streak</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= current_user.find_scores[0] %></td>
+                <td><%= current_user.find_scores[1] %></td>
+                <td><%= current_user.find_scores[2] %></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="table table-hover table-activity">
+            <thead>
+              <tr>
+                <th>Latest Pull Requests</th>
+                <th>Current State</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% current_user.pull_requests.each do |pr| %>
+              <tr>
+                <td> <%= link_to pr.payload.pull_request.title, pr.payload.pull_request.html_url  %></td>
+                <td> <%= pr.payload.pull_request.state  %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+          <table class="table table-hover table-activity">
+            <thead>
+              <tr>
+                <th>Latest Issues</th>
+                <th>Current State</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% current_user.issues.each do |issue| %>
+              <tr>
+                <td> <%= link_to issue.payload.issue.title, issue.payload.issue.html_url  %></td>
+                <td> <%= issue.payload.issue.state  %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+          <table class="table table-hover table-activity">
+            <thead>
+              <tr>
+                <th>Latest Commits</th>
+                <th>Repository</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% current_user.commits.each do |commit_array| %>
+              <% commit_array.payload.commits.each do |commit| %>
+              <tr>
+                <td> <%= link_to commit.message, "http://www.github.com/#{commit_array.repo.name}/commit/#{commit.sha}" %></td>
+                <td> <%= link_to commit_array.repo.name, "http://www.github.com/#{commit_array.repo.name}" %></td>
+              </tr>
+              <% end %>
+              <% end %>
+            </tbody>
+          </table>
+
+
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+    // client side
+    function responseHandler(res) {
+      return res.repos;
+    }
+
+    // server side
+    /*
+    function responseHandler(res) {
+    return {
+    rows: res.repos;
+    total: res.repos.length
+  }
+}
+*/
+</script>
