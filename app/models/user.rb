@@ -51,48 +51,47 @@ class User < ActiveRecord::Base
   def pull_requests
     pull_reqs = github_auth.activity.events.performed(self.nickname)
     .find_all{|event| event.type == "PullRequestEvent"}
-    open_prs = pull_reqs.select{|pr| pr.action == "opened"}
-    opened_pull_req = []
-    open_prs.map do |pr|
-      if pr.payload.number != pull_reqs.each{|pull_req| pull_req.payload.number}
-      opened_pull_req << pr
+    open_prs = pull_reqs.select{|pr| pr.payload.action == "opened"}
+
+    closed_prs = pull_reqs.select{|pr| pr.payload.action == "closed"}
+    pr_ids = closed_prs.map do |pr|
+      pr.payload.number
     end
+    open_prs.select{|pr| !pr_ids.include?(pr.payload.number)}
   end
-  opened_pull_req
-end
 
-def issues
-  github_auth.activity.events.performed(self.nickname)
-  .find_all{|event| event.type == "IssuesEvent"}
-end
+  def issues
+    github_auth.activity.events.performed(self.nickname)
+    .find_all{|event| event.type == "IssuesEvent"}
+  end
 
-def commits
-  github_auth.activity.events.performed(self.nickname)
-  .find_all{|event| event.type == "PushEvent"}
-end
+  def commits
+    github_auth.activity.events.performed(self.nickname)
+    .find_all{|event| event.type == "PushEvent"}
+  end
 
-def organizations
-  github_auth.orgs.list(user: self.nickname)
-end
+  def organizations
+    github_auth.orgs.list(user: self.nickname)
+  end
 
-private
+  private
 
-def github_auth
-  Github.new :oauth_token => self.token
-end
+  def github_auth
+    Github.new :oauth_token => self.token
+  end
 
-def stats
-  @stats ||= GithubStats.new(self.nickname)
-end
+  def stats
+    @stats ||= GithubStats.new(self.nickname)
+  end
 
-def current_streak
-  days = @stats.data.streak.last.date - @stats.data.streak.first.date
-  days.numerator + days.denominator
-end
+  def current_streak
+    days = @stats.data.streak.last.date - @stats.data.streak.first.date
+    days.numerator + days.denominator
+  end
 
-def longest_streak
-  days = @stats.data.longest_streak.last.date - @stats.data.longest_streak.first.date
-  days.numerator + days.denominator
-end
+  def longest_streak
+    days = @stats.data.longest_streak.last.date - @stats.data.longest_streak.first.date
+    days.numerator + days.denominator
+  end
 
 end
