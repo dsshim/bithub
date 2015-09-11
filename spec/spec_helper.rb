@@ -86,6 +86,23 @@ RSpec.configure do |config|
       },
       })
   end
+
+  def invalid_login
+    OmniAuth.config.test_mode = true
+
+    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
+      :provider => 'github',
+      info:{
+        :nickname => 'test',
+        :email => 'test@t.com',
+        :image_url => "www.fakeaddress.com",
+      },
+      credentials:{
+        :token => 2334234,
+        :uid => '99999',
+      },
+      })
+  end
     # The settings below are suggested to provide a good initial experience
     # with RSpec, but feel free to customize to your heart's content.
 

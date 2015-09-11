@@ -1,4 +1,4 @@
-require 'rails_helper' # ~> LoadError: cannot load such file -- rails_helper
+require 'rails_helper'
 
 RSpec.describe "user can login" do
   before do
@@ -28,23 +28,4 @@ RSpec.describe "user can login" do
       expect(current_path).to eq(root_path)
     end
   end
-
-  xscenario "user cannot login without github account" do
-    VCR.use_cassette("user_login_test#invalid_account") do
-      visit root_path
-      click_link("Login with Github")
-      save_and_open_page
-
-      expect(current_path).to eq(root_path)
-    end
-  end
-
-
 end
-
-# ~> LoadError
-# ~> cannot load such file -- rails_helper
-# ~>
-# ~> /Users/Dave/.rvm/rubies/ruby-2.2.1/lib/ruby/site_ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require'
-# ~> /Users/Dave/.rvm/rubies/ruby-2.2.1/lib/ruby/site_ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require'
-# ~> /Users/Dave/Turing/module_3/bithub/spec/features/user_can_login_spec.rb:1:in `<main>'

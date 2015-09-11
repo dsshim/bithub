@@ -36,9 +36,12 @@
   margin-bottom: 5%;
 }
 
-#starred-modal, #follower-modal, #following-modal {
-  top: 30%;
-  right: 40%;
+#starred-modal {
+  margin-top: 5%;
+}
+
+#follower-modal, #following-modal {
+  margin-top: 5%;
 }
 
 .table-curved {
@@ -55,6 +58,8 @@
 }
 .table-curved th {
     border-top: none;
+    background-color: #052B59;
+    color: whitesmoke;
 }
 .table-curved th:first-child {
     border-radius: 6px 0 0 0;
