@@ -29,12 +29,16 @@ body {
 
 #navbar-custom {
   background-color: #032B57;
-  padding-right: 0 !important;
-  // font-family: "Aldrich", sans-serif;
+
 }
 
 .navbar-brand{
   font-family: "Aldrich", sans-serif;
+}
+
+a:hover {
+  background-color: whitesmoke;
+  color: #032B57;
 }
 
 .navbar a{
