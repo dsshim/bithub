@@ -79,14 +79,8 @@ class User < ActiveRecord::Base
   private
 
   def github_auth
-   @github ||= Github.new oauth_token: self.token, client_id: ENV['github_id'], client_secret: ENV['github_secret']
-   @github.authorize_url redirect_uri: 'http://...', scope: 'repo'
-   @github
+    Github.new :oauth_token => self.token
   end
-
-  # def github_auth
-  #   Github.new :oauth_token => self.token
-  # end
 
   def stats
     @stats ||= GithubStats.new(self.nickname)
