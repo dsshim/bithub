@@ -14,6 +14,36 @@ class User < ActiveRecord::Base
     user
   end
 
+  def repositories
+    Github.repos.list user: self.nickname
+  end
+
+  def followers
+    github_auth.users.followers.list
+  end
+
+  def following
+    github_auth.users.followers.following
+  end
+
+  def starred
+    github_auth.activity.starring.starred
+  end
+
+  def issues
+    github_auth.activity.events.performed(self.nickname)
+    .find_all{|event| event.type == "IssuesEvent"}
+  end
+
+  def commits
+    github_auth.activity.events.performed(self.nickname)
+    .find_all{|event| event.type == "PushEvent"}
+  end
+
+  def organizations
+    github_auth.orgs.list(user: self.nickname)
+  end
+
   def find_recent_commits_for_followed_users
     commits = []
     users = following.map do |user|
@@ -34,22 +64,6 @@ class User < ActiveRecord::Base
     scores
   end
 
-  def repositories
-    Github.repos.list user: self.nickname
-  end
-
-  def followers
-    github_auth.users.followers.list
-  end
-
-  def following
-    github_auth.users.followers.following
-  end
-
-  def starred
-    github_auth.activity.starring.starred
-  end
-
   def pull_requests
     pull_reqs = github_auth.activity.events.performed(self.nickname)
     .find_all{|event| event.type == "PullRequestEvent"}
@@ -62,25 +76,17 @@ class User < ActiveRecord::Base
     open_prs.select{|pr| !pr_ids.include?(pr.payload.number)}
   end
 
-  def issues
-    github_auth.activity.events.performed(self.nickname)
-    .find_all{|event| event.type == "IssuesEvent"}
-  end
-
-  def commits
-    github_auth.activity.events.performed(self.nickname)
-    .find_all{|event| event.type == "PushEvent"}
-  end
-
-  def organizations
-    github_auth.orgs.list(user: self.nickname)
-  end
-
   private
 
   def github_auth
-    Github.new :oauth_token => self.token
+   @github ||= Github.new oauth_token: self.token, client_id: ENV['github_id'], client_secret: ENV['github_secret']
+   @github.authorize_url redirect_uri: 'http://...', scope: 'repo'
+   @github
   end
+
+  # def github_auth
+  #   Github.new :oauth_token => self.token
+  # end
 
   def stats
     @stats ||= GithubStats.new(self.nickname)

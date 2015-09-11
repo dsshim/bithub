@@ -15,5 +15,7 @@ class GithubController < ApplicationController
 
    def github
     @github ||= Github.new client_id: env['github_id'], client_secret: env['github_secret']
+    @github.authorize_url redirect_uri: 'http://...', scope: 'repo'
+    @github
    end
 end
