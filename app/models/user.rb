@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
     end
     users.each do |user|
       commits << Github.activity.events.performed(user)
-      .find_all{|event| event.type == "PushEvent"}.last(1)
+      .find_all{|event| event.type == "PushEvent"}.first
     end
     commits
   end
@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   def find_scores
     stats
     scores = []
-    scores.push(@stats.data.scores.reverse[0..364]
+    scores.push(@stats.data.scores.reverse[0..365]
     .inject(:+), current_streak, longest_streak )
     scores
   end

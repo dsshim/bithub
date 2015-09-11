@@ -95,8 +95,8 @@ RSpec.describe User, type: :model do
 
       expect(commits.count).to eq(10)
       expect(commit.actor.login).to eq("dsshim")
-      expect(commit.payload.commits.first.message).to eq("adds homepage/navbar styling")
-      expect(commit.payload.commits.first.sha).to eq("dd68eb9496a5d2c1ab09f528d012ae9d2b397b54")
+      expect(commit.payload.commits.first.message).to eq("adds user spec tests")
+      expect(commit.payload.commits.first.sha).to eq("a9feac9b5ec066ec04efb60098c40b4f79ec5137")
     end
   end
 
@@ -114,7 +114,7 @@ RSpec.describe User, type: :model do
 
       scores = user.find_scores
 
-      expect(scores[0]).to eq(363)
+      expect(scores[0]).to eq(365)
       expect(scores[1]).to eq(3)
       expect(scores[2]).to eq(11)
     end
@@ -126,9 +126,9 @@ RSpec.describe User, type: :model do
       commits = user.find_recent_commits_for_followed_users
       commit = commits.first
 
-      expect(commit.first.actor.login).to eq("jcasimir")
-      expect(commit.first.payload.commits.first.message).to eq("Update hash_test.rb\n\nThere has been a lot of confusion about some of these hash tests, both in my cohort and the current module 1. The problem is that saying something like `assert_equal {\"apple\" => \"a\", \"banana\" => \"b\"}, {\"a\" => \"apple\", \"b\" => \"banana\"}.invert` doesn't work, because Ruby thinks that the curly bracket is a block instead of a hash. There are a couple ways to make this more clear for beginners, but personally I think this way works the best. Maybe this will help out 1510 when they work on this.")
-      expect(commit.first.payload.commits.first.author.name).to eq("Jeff Ruane")
+      expect(commit.actor.login).to eq("jcasimir")
+      expect(commit.payload.commits.first.message).to eq("Clarifying no arrays constraint")
+      expect(commit.payload.commits.first.author.name).to eq("Jeff Casimir")
     end
   end
 

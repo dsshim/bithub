@@ -15,7 +15,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Thu, 10 Sep 2015 21:28:56 GMT
+      - Fri, 11 Sep 2015 04:36:01 GMT
       Content-Type:
       - text/html; charset=utf-8
       Transfer-Encoding:
@@ -43,14 +43,14 @@ http_interactions:
       X-Ua-Compatible:
       - IE=Edge,chrome=1
       Set-Cookie:
-      - logged_in=no; domain=.github.com; path=/; expires=Mon, 10 Sep 2035 21:28:56
+      - logged_in=no; domain=.github.com; path=/; expires=Tue, 11 Sep 2035 04:36:01
         -0000; secure; HttpOnly
       X-Request-Id:
-      - 620ec9f0c6f1e6ac0835bc066ceb1e33
+      - c765b48b0f9d5dd8ca1a1e84d973b753
       X-Runtime:
-      - '0.116032'
+      - '0.038135'
       X-Github-Request-Id:
-      - 4999852B:7F5F:88841F5:55F1F617
+      - D01F313B:4F9A:97384A7:55F25A30
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains; preload
       X-Content-Type-Options:
@@ -60,7 +60,7 @@ http_interactions:
       X-Frame-Options:
       - deny
       X-Served-By:
-      - 76f8aa18dab86a06db6e70a0421dc28c
+      - 53e13e5d66f560f3e2b04e74a099de0d
     body:
       encoding: ASCII-8BIT
       string: |
@@ -536,7 +536,7 @@ http_interactions:
                   <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-09-07"/>
                   <rect class="day" width="11" height="11" y="26" fill="#8cc665" data-count="4" data-date="2015-09-08"/>
                   <rect class="day" width="11" height="11" y="39" fill="#1e6823" data-count="23" data-date="2015-09-09"/>
-                  <rect class="day" width="11" height="11" y="52" fill="#d6e685" data-count="3" data-date="2015-09-10"/>
+                  <rect class="day" width="11" height="11" y="52" fill="#8cc665" data-count="5" data-date="2015-09-10"/>
               </g>
               <text x="0" y="-5" class="month">Sep</text>
               <text x="52" y="-5" class="month">Oct</text>
@@ -560,5 +560,5 @@ http_interactions:
           </g>
         </svg>
     http_version: 
-  recorded_at: Thu, 10 Sep 2015 21:28:57 GMT
+  recorded_at: Fri, 11 Sep 2015 04:36:02 GMT
 recorded_with: VCR 2.9.3

@@ -97,8 +97,8 @@
             </div>
           </div>
 
-          <% if !current_user.organizations.nil? %>
-          <table class="table table-hover">
+          <% if !current_user.organizations.empty? %>
+          <table class="table table-hover table-curved">
 
             <thead>
               <tr>
@@ -132,7 +132,7 @@
             </tbody>
           </table>
 
-          <table class="table table-hover table-activity table-curved">
+          <table class="table table-hover table-prs table-curved">
             <thead>
               <tr>
                 <th>Latest Pull Requests</th>
@@ -149,7 +149,7 @@
             </tbody>
           </table>
 
-          <table class="table table-hover table-activity table-curved">
+          <table class="table table-hover table-issues table-curved">
             <thead>
               <tr>
                 <th>Latest Issues</th>
@@ -166,7 +166,7 @@
             </tbody>
           </table>
 
-          <table class="table table-hover table-activity table-curved">
+          <table class="table table-hover table-commits table-curved">
             <thead>
               <tr>
                 <th>Latest Commits</th>
@@ -184,6 +184,28 @@
               <% end %>
             </tbody>
           </table>
+
+          <table class="table table-hover table-activity table-curved">
+        <thead>
+          <tr>
+            <th>Latest Commits From Users Being Followed</th>
+            <th>Author</th>
+            <th>Repository</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% current_user.find_recent_commits_for_followed_users.compact.each do |commits| %>
+            <% commits.payload.commits.each do |commit| %>
+
+          <tr>
+            <td> <%= link_to commit.message, "http://www.github.com/#{commits.repo.name}/commit/#{commit.sha}" %></td>
+            <td> <%= link_to commit.author.name, "http://www.github.com/#{commits.actor.login}" %>
+            <td> <%= link_to commits.repo.name, "http://www.github.com/#{commits.repo.name}" %></td>
+          </tr>
+          <% end %>
+          <% end %>
+        </tbody>
+      </table>
 
 
         </div>
