@@ -68,6 +68,8 @@ RSpec.describe User, type: :model do
       pull_req = pull_requests.first
 
       expect(pull_requests.count).to eq(0)
+
+
       # expect(pull_req.actor.login).to eq("dsshim")
       # expect(pull_req.payload.action).to eq("closed")
       # expect(pull_req.payload.pull_request.html_url).to eq("https://github.com/dsshim/bithub/pull/13")
